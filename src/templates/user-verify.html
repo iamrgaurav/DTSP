@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block link_file %}
+    <link rel="stylesheet" href="{{ url_for('static',filename="css/main1.css") }}">
+    <script src="{{url_for('static',filename = 'js/finger.js')}}"></script>
+{% endblock %}
+{% block header %}
+  <div class="navbar-text w-100 text-center">
+    <h2 class="d-inline-block"><marquee>Telecom Service Provider</marquee></h2>
+  </div>
+{% endblock %}
+{% block content %}
+  <div class="col-lg-3"></div>
+   <div class="col-lg-6">
+       <div class="well well-lg jumb">
+         <h3 class="loginf"><b><center>Verify here</center></b></h3>
+          <form class="form-horizontal" name="form1" id="form1" method="post" action="user_details.html">
+             <div class="form-group">
+               <label class="control-label">Aadhaar No:</label>
+               <input type="text" class="form-control" placeholder="Enter aadhar" name="aadhaar" required>
+             </div>
+             <div class="form-group">
+               <label class="control-label">Fingerprint:</label><br><br>
+             </div> 
+             <div id="image">
+              <center><img  src="{{ url_for('static',filename="assets/images/download.png") }}"  width="90" height="130" onclick="imga()" /></center>
+            </div>
+
+
+          </form>
+       </div>
+    </div>
+{% endblock %}

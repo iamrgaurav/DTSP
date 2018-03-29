@@ -1,0 +1,23 @@
+.navbar-custom
+{
+    background-color: #551A8B;
+    height:80px;
+}
+h1{
+   text-align:center;
+   color:white;
+   margin-top:15px;
+}
+
+.jumbotron
+{
+   	margin:200px;
+   	width:800px;
+    height:800px;
+    margin-top: 12px;
+    box-shadow:0px 9px 9px 8px grey;
+
+ }
+
+
+
