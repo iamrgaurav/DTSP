@@ -5,8 +5,13 @@
 {% endblock %}
 {% block header %}
   <div class="navbar-text w-100 text-center">
-    <h2 class="d-inline-block"><marquee>Telecom Service Provider</marquee></h2>
+    <h2 class="d-inline-block">Telecom Service Provider</marquee></h2>
   </div>
+    <ul class="nav navbar-nav ml-auto">
+        {% if session['uid']==None %}
+            <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+        {% endif %}
+    </ul>
 {% endblock %}
 {% block content %}
   <div class="col-lg-3"></div>

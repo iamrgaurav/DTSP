@@ -6,11 +6,12 @@
     <div class="navbar-text w-100 navbar-center ">
          <h2 class=" d-inline-block">Telecom Service Provider</h2>
     </div>
-    <div class="pull-right">
-        <ul class="nav navbar-nav">
-            <li><a href="/home"><button type="submit" class="btn  btn-primary btn-lg " name="logout" value="Logout">Logout</button></a></li>
-        </ul>
-    </div>
+    <ul class="nav navbar-nav ml-auto">
+        <li><a href="{{ url_for('home') }}"><h1>Home</h1></a></li>
+        {% if session['uid']==None %}
+            <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+        {% endif %}
+    </ul>
 {% endblock %}
 {% block content %}
   <div class="col-lg-3"></div>

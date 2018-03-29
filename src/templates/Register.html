@@ -8,6 +8,12 @@
       <div class="navbar-text w-100 text-center">
         <h2 class=" text-white d-inline-block">Telecome Service Provider</h2>
       </div>
+      <ul class="nav navbar-nav ml-auto">
+          <li><a href="{{ url-for('home') }}"><h1>Home</h1></a></li>
+          {% if session['uid']==None %}
+              <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+          {% endif %}
+      </ul>
 {% endblock %}
 {% block content %}
    <div class="row">

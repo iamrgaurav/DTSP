@@ -6,6 +6,10 @@
     <div class="navbar-text w-100 text-center">
       <h2 class="d-inline-block" ><marquee>Telecom Service Provider</marquee></h2>
     </div>
+    <ul class="nav navbar-nav ml-auto">
+        <li><a href="{{ url_for('home') }}"><h1>Home</h1></a></li>
+        <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+    </ul>
 {% endblock %}
 {% block content %}
   <div class="col-lg-3"></div>
