@@ -42,7 +42,3 @@ def register(aadhaar):
     return render_template('Register.html', user=user)
 
 
-@staticmethod
-def logout():
-  session['username'] = None
-
