@@ -2,10 +2,11 @@ from flask import Flask
 import os
 from src.common.database import Database
 
+import src.config as Config
 
 app = Flask(__name__)
 
-app.config.from_object('config')
+app.config.from_object(Config)
 app.secret_key = os.environ.get("app_secret_key")
 
 
