@@ -1,4 +1,6 @@
 import pymongo
+import os
+
 
 
 class Database:
