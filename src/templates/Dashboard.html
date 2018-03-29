@@ -3,26 +3,8 @@
     <link rel="stylesheet" href="{{ url_for('static',filename="css/main1.css") }}">
 {% endblock %}
 {% block header %}
-    <a class="navbar-brand" href="#">Department of Telecommunications Ministry of Communication</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse text-white" id="collapsibleNavbar">
-        <ul class="navbar-nav ml-auto">
-            {% if session['uid'] == None %}
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-success" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Home</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
-                </li>
-            {% endif %}
-        </ul>
+    <div class="navbar-text w-100 text-center">
+      <h2 class="d-inline-block" ><marquee>Telecom Service Provider</marquee></h2>
     </div>
 {% endblock %}
 {% block content %}

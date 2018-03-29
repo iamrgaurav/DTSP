@@ -3,25 +3,12 @@
     <link rel="stylesheet" href="{{ url_for('static',filename="css/main1.css")}}">
 {% endblock %}
 {% block header %}
-    <div class="collapse navbar-collapse text-white" id="collapsibleNavbar">
-        <ul class="navbar-nav ml-auto">
-
-            {% if session['uid'] == None %}
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-success" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Home</a>
-                </li>
-            {% else %}
-
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ url_for('.redirect_to_dash') }}">To Dash</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white btn btn-danger" href="{{ url_for('.logout') }}">Logout</a>
-                </li>
-            {% endif %}
+    <div class="navbar-text w-100 navbar-center ">
+         <h2 class=" d-inline-block">Telecom Service Provider</h2>
+    </div>
+    <div class="pull-right">
+        <ul class="nav navbar-nav">
+            <li><a href="/home"><button type="submit" class="btn  btn-primary btn-lg " name="logout" value="Logout">Logout</button></a></li>
         </ul>
     </div>
 {% endblock %}
