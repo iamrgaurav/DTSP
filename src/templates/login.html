@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block link_file %}
+    <link rel="stylesheet" href="{{ url_for('static',filename="css/main1.css")}}">
+{% endblock %}
+{% block header %}
+    <div class="navbar-text w-100 navbar-center ">
+         <h2 class=" d-inline-block">Telecom Service Provider</h2>
+    </div>
+    <div class="pull-right">
+        <ul class="nav navbar-nav">
+            <li><a href="/home"><button type="submit" class="btn  btn-primary btn-lg " name="logout" value="Logout">Logout</button></a></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+  <div class="col-lg-3"></div>
+   <div class="col-lg-6">
+      <div class="row">
+           <div class="well well-lg  jumb">
+             <h3 class="loginf"><b><center>Login here</center></b></h3>
+              <form class="form-horizontalr" method="post" action = "{{ 'login' }}">
+                <div class="form-group">
+                  <label class="control-label">Username:</label>
+                  <input type="text" class="form-control" placeholder="Enter name" name="username" required>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Password:</label>
+                  <input type="password" class="form-control" placeholder="Enter password" name="pwd" required>
+                </div>
+                <div class="form-group">        
+                  <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+              </form>
+            </div>
+    </div>
+</div>
+
+{% endblock %}

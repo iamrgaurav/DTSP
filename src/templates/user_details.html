@@ -1,0 +1,738 @@
+{% extends 'base.html' %}
+{% block link_file %}
+    <link rel="stylesheet"  href="{{url_for('static',filename="css/common.css")}}">
+{% endblock %}
+{% block header %}
+        <div class="navbar-text w-100 text-center">
+            <h2 class=" text-white d-inline-block">Telecome Service Provider</h2>
+        </div>
+{% endblock %}
+
+{% block content %}
+
+        <div class="row mt-2">
+            <div class="col-12">
+
+                <div class="card d-flex flex-lg-row shadow-all  flex-sm-column">
+                    <div class="d-flex flex-column w-50 ml-2">
+                        <div class="d-inline-flex mt-2 m-lg-2 ">
+                            Name:
+                            <span>{{ user.name }}</span>
+                        </div>
+                        <div class="d-inline-flex  dev m-lg-2 ">
+                             Date of Birth:
+                            <span>{{ user.dob }}</span>
+                        </div>
+                        <div class="d-inline-flex dev m-lg-2 ">
+                            Gender:
+                            <span>{{ user.gender }}</span>
+                        </div>
+                        <div class="d-inline-flex dev m-lg-2 ">
+                          Aadhaar No:
+                            <span>{{ user.aadhaar_no }}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex w-50">
+                        <img src="{{ url_for('static',filename="assets/images/user.jpeg") }}"  align="right" class="rounded-center ml-auto" height=80%/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="card shadow-all justify-content-center">
+                    <div class="card-header">
+
+                        <h1><b>Total Sim Issue:</b></h1>
+                    </div>
+                    <div class="card-body">
+                        <table id="myTable" class="table-bordered table-striped table-hover table-responsive">
+                            <thead class="bg-dark text-white w-100">
+                                <tr>
+                                    <th>Mobile No</th>
+                                    <th>Issue Date</th>
+                                    <th>TSP Name</th>
+                                    <th>LSA Name</th>
+                                </tr>
+                            </thead>
+                            <tbody class="w-100 em-2 ">
+                            {% for sim in sims %}
+                                <tr>
+                                    <td>{{ sim['mobile'] }}</td>
+                                    <td>{{ sim['lsa']}}</td>
+                                    <td>{{ sim['tsp'] }}</td>
+                                    <td>{{ sim['issue_date'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% for key in keys %}
+                        <p>{{ key }}: {{ sim_count.key }}</p>
+                    {% endfor %}
+
+                    </div>
+                    <div>
+                        <a href="{{ url_for('retailers.register') }}"><button type ="button" class="btn btn-primary btn-block" >Proceed</button></a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+show sbs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

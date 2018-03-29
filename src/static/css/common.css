@@ -1,0 +1,73 @@
+.navbar-custom
+{
+    background-color: #551A8B;
+    height:60px;
+}
+h1{
+   text-align:left;
+   color:default;
+   margin-top:15px;
+}
+.flex-container {
+  margin-top:70px;
+  display: flex;
+  flex-wrap:wrap;
+  height:200px;
+}
+
+.flex-container > div {
+  background-color: white;
+  width: 400px;
+  margin-left: 60px;
+  text-align: left;
+  font-size: 20px;
+  background-image: url('use4.jpeg')
+}
+#table {
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+ .dev {
+        margin-top: 40px;
+    }
+
+    .shadow-all {
+        box-shadow: box-shadow: 0 0 5px #333;
+        -moz-box-shadow: 0 0 5px #333;
+        -webkit-box-shadow: 0 0 5px #333;
+    }
+
+    .shadow-top {
+        box-shadow: 0 -5px 5px -5px #333;
+        -moz-box-shadow: 0 -5px 5px -5px #333;
+        -webkit-box-shadow: 0 -5px 5px -5px #333;
+    }
+
+    .shadow-right {
+        box-shadow: 5px 0 5px -5px #333;
+        -moz-box-shadow: 5px 0 5px -5px #333;
+        -webkit-box-shadow: 5px 0 5px -5px #333;
+
+    }
+
+    .shadow-bottom {
+        box-shadow: 0 5px 5px -5px #333;
+        -moz-box-shadow: 0 5px 5px -5px #333;
+        -webkit-box-shadow: 0 5px 5px -5px #333;
+    }
+
+    .shadow-left {
+        box-shadow: -5px 0 5px -5px #333;
+        -moz-box-shadow: -5px 0 5px -5px #333;
+        -webkit-box-shadow: -5px 0 5px -5px #333;
+    }

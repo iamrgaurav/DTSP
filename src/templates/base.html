@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Telecom Service Provider{% block title %}{% endblock %}</title>
+    {% include 'link_file.html' %}
+    {% block link_file %}{% endblock %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default navbar-custom steaky-top">
+        {% block header %}
+        {% endblock %}
+    </nav>
+</header>
+<div class="container">
+{% block content %}
+
+{% endblock %}
+</div>
+</body>
+</html>
