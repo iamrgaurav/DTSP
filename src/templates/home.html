@@ -1,31 +1,40 @@
 {% extends 'base.html' %}
 {% block link_file %}
-    <link rel="stylesheet"  href="{{ url_for('static',filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
 {% endblock %}
 {% block header %}
-<div class="container-fluid">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#"><h1>TelecomServiceProvider</h1></a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><h1>TelecomServiceProvider</h1></a>
+        </div>
+        <ul class="nav navbar-nav ml-auto">
+            <li><a href="#"><h1>Home</h1></a></li>
+            {% if session['uid']==None %}
+                <li><a href="{{ url_for('login') }}"><h1>Login</h1></a></li>
+            {% else %}
+                <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+            {% endif %}
+        </ul>
     </div>
-    <ul class="nav navbar-nav ml-auto">
-        <li><a href="#"><h1>Home</h1></a></li>
-{%if session['uid']==None%}
-        <li><a href="{{ url_for('login') }}"><h1>Login</h1></a></li>
-{%elif%}
-        <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
-{%endif%}
-    </ul>
-</div>
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron ">
-    <h1 class="display-">About</h1>
-    <p class="lead">India's telecommunication network is the second largest in the world by number of telephone users (both fixed and mobile phone) with 1.206 billion subscribers as on 30 September 2017. It has one of the lowest call tariffs in the world enabled by mega telecom operators and hyper-competition among them. India has the world's second-largest Internet user-base. As on 30 September 2017, there were 324.89 million internet subscribers in the country.</br>
-    Telecommunication has supported the socioeconomic development of India and has played a significant role to narrow down the rural-urban digital divide to some extent. It also has helped to increase the transparency of governance with the introduction of e-governance in India. The government has pragmatically used modern telecommunication facilities to deliver mass education programmes for the rural folk of India.</br>
-    Telecommunication in India has greatly been supported by the INSAT system of the country, one of the largest domestic satellite systems in the world. India possesses a diversified communications system, which links all parts of the country by telephone, Internet, radio, television and satellite.
-    </p>
-</div>
+    <div class="jumbotron ">
+        <h1 class="display-">About</h1>
+        <p class="lead">India's telecommunication network is the second largest in the world by number of telephone
+            users (both fixed and mobile phone) with 1.206 billion subscribers as on 30 September 2017. It has one of
+            the lowest call tariffs in the world enabled by mega telecom operators and hyper-competition among them.
+            India has the world's second-largest Internet user-base. As on 30 September 2017, there were 324.89 million
+            internet subscribers in the country.</br>
+            Telecommunication has supported the socioeconomic development of India and has played a significant role to
+            narrow down the rural-urban digital divide to some extent. It also has helped to increase the transparency
+            of governance with the introduction of e-governance in India. The government has pragmatically used modern
+            telecommunication facilities to deliver mass education programmes for the rural folk of India.</br>
+            Telecommunication in India has greatly been supported by the INSAT system of the country, one of the largest
+            domestic satellite systems in the world. India possesses a diversified communications system, which links
+            all parts of the country by telephone, Internet, radio, television and satellite.
+        </p>
+    </div>
 {% endblock %}
 
 
