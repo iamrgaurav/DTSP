@@ -30,7 +30,7 @@ def user_verify():
 @retailers_blueprint.route('/user_details/<user_id>', methods=['GET', 'POST'])
 def user_details(user_id):
     user = User.get_by_id(user_id)
-    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim",data={'aadhaar_no':'123412341234', 'tsp':'Airtel'}).json()
+    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim",data={'aadhaar_no':user.aadhaar_no, 'tsp':'Airtel'}).json()
     sims = data['data']['sim']
     sim_count = data['data']['sims_by_other_tsp']
     keys = sim_count.keys()
