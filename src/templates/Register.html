@@ -52,7 +52,7 @@
                     <form method="post" action="{{ url_for('retailer.sim_register',user_id = user._id) }}">
                         <div class="form-group">
                             <label for="aadhaar">Aadhaar_No:</label>
-                            <input id="aadhaar" type="text" class="form-control" value="{{ user.aadhaar_no }}"
+                            <input id="aadhaar" name="aadhaar" type="text" class="form-control" value="{{ user.aadhaar_no }}"
                                    disabled="disabled" required="required">
                         </div>
 
