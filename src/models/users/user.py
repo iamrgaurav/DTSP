@@ -22,7 +22,7 @@ class User(object):
             "name": self.name,
             "gender": self.gender,
             "address": self.address,
-            "dob": self.dob,
+            "dob": self.dob.strftime("%Y-%m-%d"),
             "fingerprint": self.fingerprint,
             "image": self.image
         }

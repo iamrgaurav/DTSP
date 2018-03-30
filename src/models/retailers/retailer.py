@@ -46,7 +46,7 @@ class Retailer:
 
     @classmethod
     def get_all_retailers(cls):
-        cluster_data = Database.find(RetailerConstants.COLLECTION,{})
+        cluster_data = Database.find(RetailerConstants.COLLECTION, {})
         return [cls(**data) for data in cluster_data] if cluster_data is not None else False
 
     @classmethod
@@ -93,9 +93,13 @@ class Retailer:
         :return:True if authentication is successful else false
         """
         user =User.get_by_aadhaar(aadhaar)
+        if user is not None:
+            return user
+        else:
+            return None
 
     @staticmethod
-    def get_user_by_adhaar(adhaar):
+    def get_user_by_adhaar(aadhaar):
         return User.get_by_aadhaar(aadhaar)
 
     @staticmethod

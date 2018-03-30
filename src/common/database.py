@@ -36,4 +36,3 @@ class Database:
     def update(collection, query, data):
         Database._DATABASE[collection].update(query, data, upsert=True)
 
-

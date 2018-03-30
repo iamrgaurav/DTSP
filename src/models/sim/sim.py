@@ -14,7 +14,7 @@ class Sim:
     def json(self):
         return {
             'aadhaar_no': self.aadhaar_no,
-            'issue_date':self.issue_date,
+            'issue_date':self.issue_date.strftime("%Y-%m-%d"),
             'mobile_no': self.mobile_no,
             'local_service_area': self.local_service_area,
             '_id': self._id
