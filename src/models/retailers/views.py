@@ -53,7 +53,7 @@ def register(user_id):
             if sim.save_to_db():
                 if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.lsa}):
                   flash("Successfuly Registered")
-                  return redirect(url_for('home_method'))
+                  return redirect(url_for('.dashboard',user_id))
         return render_template('Register.html', user=user)
     return render_template('Register.html')
 
