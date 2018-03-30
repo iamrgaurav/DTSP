@@ -1,82 +1,60 @@
-{% extends 'base.html' %}
-{% block link_file %}
-    <link rel="stylesheet" href="{{ url_for('static',filename="css/main.css")}}">
-    <script src="{{url_for('static',filename = "js/finger1.js")}}"></script>
+import requests
+from flask import render_template, request, redirect, url_for, session, flash
+from flask.blueprints import Blueprint
+from src.models.retailers.retailer import Retailer
+from src.models.sim.sim import Sim
+from src.models.users.user import User
 
-{% endblock %}
-{% block header %}
-      <div class="navbar-text w-100 text-center">
-        <h2 class=" text-white d-inline-block">Telecome Service Provider</h2>
-      </div>
-      <ul class="nav navbar-nav ml-auto">
-          <li><a href="{{ url-for('home_method') }}"><h1>Home</h1></a></li>
-          {% if session['uid']==None %}
-              <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
-          {% endif %}
-      </ul>
-{% endblock %}
-{% block content %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="w-100 h-100 success">
-                <div class="warning-box-wrapper"></div>
-                <div class="warning-box bg-cherry-red-fade rounded alert p-0" role="alert">
-                    <div class="warning-box-header bg-cherry-red text-white text-center pt-2 pb-2 rounded-top">
-                        <h2><span class="fas fa-exclamation-circle"></span> Congratulations
-                            <button type="button" class="close p-2 pr-3 text-white" data-dismiss="alert"
-                                    aria-label="Close">
-                                <span aria-hidden="true">&times;</span></button>
-                        </h2>
-                    </div>
-                    <div class="container warning-box-body">
-                        {% for message in messages %}
-                            {{ message }}
-                            <div class="warning-box-footer">
-                                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                                        data-target="#myModal" id="success">
-                                    Okay!
-                                </button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    {% endwith %}
-
-   <div class="row">
-       <div class="col-md-12 col-md-offset-5">
-           <h1><b>Registration</b></h1>
-           <div class="jumbotron">
-               <div class="well">
-           	      <form>
-           	  	      <div class="form-group">
-           	  		      <label for="Name">Aadhaar_No:</label>
-           	  		      <input type="text" class="form-control" value = "{{ user.aadhaar_no }}" disabled="diabled" required="required">
-           	  	      </div>
-
-           	  	      <div class="form-group">
-           	  		      <label for="Name">Sim_No:</label>
-           	  		      <input type="text" name = "mobile_no"class="form-control" required >
-           	  	      </div>
-           	  	      <div class="form-group">
-           	  		      <label for="lsa">Local_Service_Area:</label>
-           	  		      <input type="text" name = "lsa" class="form-control" required >
-           	  	      </div>
-                      <div class="form-group">
-           	  		      <input type="hidden" name = "tsp"  value="Airtel" class="form-control" required >
-           	  	      </div>
-           	          <div class="btn-group">
-           	  	        <input type="button" value="submit" button class="btn btn-primary">
-           	  	          <p id="demo"></p>
-           	  	     </div>
-                  </form>
-
-           </div>
-        </div>    
-    </div>
-   </div>
+retailers_blueprint = Blueprint('retailer', __name__)
 
 
-{% endblock %}
+@retailers_blueprint.route('/dashboard/<user_id>', methods=['GET', 'POST'])
+def dashboard(user_id):
+    retailer = Retailer.get_by_id(user_id)
+    return render_template('Dashboard.html', retailer=retailer)
+
+
+@retailers_blueprint.route('/user_verify', methods=['GET', 'POST'])
+def user_verify():
+    if request.method == 'POST':
+        aadhaar = request.form['aadhaar']
+        if Retailer.is_authenticated(aadhaar):
+            user = Retailer.get_user_by_adhaar(aadhaar)
+            return redirect(url_for('.user_details', user_id=user._id))
+        else:
+            flash("User Not Exist")
+            return render_template('user-verify.html')
+    else:
+        return render_template('user-verify.html')
+
+
+@retailers_blueprint.route('/user_details/<user_id>', methods=['GET', 'POST'])
+def user_details(user_id):
+    user = User.get_by_id(user_id)
+    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim",data={'aadhaar_no':'user.aadhaar_no', 'tsp':'Airtel'}).json()
+    sims = data['data']['sim']
+    sim_count = data['data']['sims_by_other_tsp']
+    keys = sim_count.keys()
+    return render_template('user_details.html', user=user, sims=sims, sim_count =sim_count, keys = keys)
+
+
+@retailers_blueprint.route('/register/<user_id>', methods=['GET', 'POST'])
+def register(user_id):
+    if request.method=="POST":
+        user = User.get_by_id(user_id)
+        sim =request.form['aadhaar_no']
+        if user is not None:
+            aadhaar_no = request.form['aadhaar_no']
+            mobile_no = request.form['mobile_no']
+            tsp = request.form['tsp']
+            issue_date = request.form['issue_date']
+            lsa = request.form['lsa']
+            sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
+            if sim.save_to_db():
+                if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":"sim.aadhaar_no", "mobile_no":"sim.mobile_no", "tsp":"Airtel","issue_date":"sim.issue_date","lsa":"sim.lsa"}):
+                  flash("Successfuly Registered")
+                  redirect(url_for('home_method'))
+        return render_template('Register.html', user=user)
+    return render_template('Register.html')
+
 
