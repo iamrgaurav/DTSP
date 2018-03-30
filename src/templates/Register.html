@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block link_file %}
-    <link rel="stylesheet" href="{{ url_for('static',filename="css/main.css")}}">
-    <script src="{{url_for('static',filename = "js/finger1.js")}}"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename="css/main.css") }}">
+    <script src="{{ url_for('static',filename = "js/finger1.js") }}"></script>
 
 {% endblock %}
 {% block header %}
-      <div class="navbar-text w-100 text-center">
+    <div class="navbar-text w-100 text-center">
         <h2 class=" text-white d-inline-block">Telecome Service Provider</h2>
-      </div>
-      <ul class="nav navbar-nav ml-auto">
-          <li><a href="{{ url_for('home_method') }}"><h1>Home</h1></a></li>
-          {% if session['uid']==None %}
-              <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
-          {% endif %}
-      </ul>
+    </div>
+    <ul class="nav navbar-nav ml-auto">
+        <li><a href="{{ url_for('home_method') }}"><h1>Home</h1></a></li>
+        {% if session['uid']==None %}
+            <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+        {% endif %}
+    </ul>
 {% endblock %}
 {% block content %}
     {% with messages = get_flashed_messages() %}
@@ -44,38 +44,44 @@
         {% endif %}
     {% endwith %}
 
-   <div class="row">
-       <div class="col-md-12 col-md-offset-5">
-           <h1><b>Registration</b></h1>
-           <div class="jumbotron">
-               <div class="well">
-           	      <form method="post" action = "{{ url_for('retailer.sim_register',user_id = user._id) }}">
-           	  	      <div class="form-group">
-           	  		      <label for="aadhaar">Aadhaar_No:</label>
-           	  		      <input id = "aadhaar" type="text" class="form-control" value = "{{ user.aadhaar_no }}" disabled="disabled" required="required">
-           	  	      </div>
+    <div class="row">
+        <div class="col-md-12 col-md-offset-5">
+            <h1><b>Registration</b></h1>
+            <div class="jumbotron">
+                <div class="well">
+                    <form method="post" action="{{ url_for('retailer.sim_register',user_id = user._id) }}">
+                        <div class="form-group">
+                            <label for="aadhaar">Aadhaar_No:</label>
+                            <input id="aadhaar" type="text" class="form-control" value="{{ user.aadhaar_no }}"
+                                   disabled="disabled" required="required">
+                        </div>
 
-           	  	      <div class="form-group">
-           	  		      <label for="mobile">Sim_No:</label>
-           	  		      <input id = "mobile" type="text" name = "mobile_no"class="form-control" required >
-           	  	      </div>
-           	  	      <div class="form-group">
-           	  		      <label for="lsa">Local_Service_Area:</label>
-           	  		      <input id = "lsa" type="text" name = "lsa" class="form-control" required >
-           	  	      </div>
-                      <div class="form-group">
-           	  		      <input type="hidden" name = "tsp"  value="Airtel" class="form-control" required >
-           	  	      </div>
-           	          <div class="btn-group">
-           	  	        <button type="submit" value="submit" class="btn btn-primary">
-           	  	          <p id="demo"></p>
-           	  	     </div>
-                  </form>
+                        <div class="form-group">
+                            <label for="mobile">Sim_No:</label>
+                            <input id="mobile" type="text" name="mobile_no" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lsa">Local_Service_Area:</label>
+                            <input id="lsa" type="text" name="lsa" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="tsp" value="Airtel" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="issue_date"
+                                   value="{{ datetime.datetime.now().strftime("%Y-%d-%m") }}" class="form-control"
+                                   required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="submit" value="submit" class="btn btn-primary">Submit</button>
+                        </div>
 
-           </div>
-        </div>    
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
-   </div>
 
 
 {% endblock %}
