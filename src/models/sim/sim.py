@@ -4,7 +4,7 @@ import src.models.sim.constants as SimConstants
 import datetime
 
 class Sim:
-    def __init__(self, aadhaar_no, mobile_no, issue_date, _id=None, local_service_area=None):
+    def __init__(self, aadhaar_no, mobile_no, issue_date, local_service_area=None,_id=None):
         self.aadhaar_no = aadhaar_no
         self.mobile_no = mobile_no
         self.issue_date = datetime.datetime.strptime(issue_date, "%Y-%m-%d") if isinstance(issue_date, str) else issue_date

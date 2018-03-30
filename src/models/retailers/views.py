@@ -32,7 +32,7 @@ def user_verify():
 @retailers_blueprint.route('/user_details/<user_id>', methods=['GET', 'POST'])
 def user_details(user_id):
     user = User.get_by_id(user_id)
-    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim", data={'aadhaar_no':'user.aadhaar_no', 'tsp':'Airtel'}).json()
+    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim", data={'aadhaar_no':'user.aadhaar_no', 'tsp':'Idea'}).json()
     sims = data['data']['sim']
     sim_count = data['data']['sims_by_other_tsp']
     keys = sim_count.keys()
@@ -52,9 +52,9 @@ def sim_register(user_id):
         tsp = request.form['tsp']
         issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
         lsa = request.form['lsa']
-        sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
+        sim = Sim(aadhaar_no,mobile_no,issue_date,lsa)
         if sim.save_to_db():
-            if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
+            if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Idea", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
                 flash("Successfuly Registered")
                 return redirect(url_for('.dashboard',user_id =session['uid']))
             else:
