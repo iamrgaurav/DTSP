@@ -23,7 +23,7 @@ def user_verify():
         else:
             flash("User NOT Found")
     else:
-        return render_template('user-verify.html')
+        return "Unsuccesful"
 
 
 @retailers_blueprint.route('/user_details/<user_id>', methods=['GET', 'POST'])
@@ -40,5 +40,6 @@ def user_details(user_id):
 def register(aadhaar):
     user = User.get_by_aadhaar(aadhaar)
     return render_template('Register.html', user=user)
+
 
 
