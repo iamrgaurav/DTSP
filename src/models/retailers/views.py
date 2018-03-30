@@ -46,11 +46,13 @@ def register(user_id):
 
 @retailers_blueprint.route('/register/<user_id>', methods=[ 'POST'])
 def sim_register(user_id):
-    aadhaar_no = request.form['aadhaar']
-    mobile_no = request.form['mobile_no']
-    tsp = request.form['tsp']
-    issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
-    lsa = request.form['lsa']
+    if request.method =='post':
+        aadhaar_no = request.form['aadhaar']
+        mobile_no = request.form['mobile_no']
+        user = User.get_by_id(user_id)
+        tsp = request.form['tsp']
+        issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        lsa = request.form['lsa']
     return "user registerd"
 
     # sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
