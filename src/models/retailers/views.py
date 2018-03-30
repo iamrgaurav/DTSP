@@ -22,7 +22,7 @@ def user_verify():
             return redirect(url_for('.user_details', user_id=user._id))
         else:
             flash("User NOT Found")
-            return redirect(request.path)
+            return redirect(url_for('request.path'))
     else:
         return render_template('user-verify.html')
 
