@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 from flask.blueprints import Blueprint
 from src.models.retailers.retailer import Retailer
 from src.models.users.user import User
@@ -19,9 +19,10 @@ def user_verify():
         aadhaar = request.form['aadhaar']
         if Retailer.is_authenticated(aadhaar):
             user = Retailer.get_user_by_adhaar(aadhaar)
-            return "User authenticated"
+            return redirect(url_for('.user_details', user_id=user._id))
         else:
-            return "User is not authenticated"
+            flash("User Not Exist")
+            return render_template('user-verify.html')
     else:
         return render_template('user-verify.html')
 
@@ -40,6 +41,5 @@ def user_details(user_id):
 def register(aadhaar):
     user = User.get_by_aadhaar(aadhaar)
     return render_template('Register.html', user=user)
-
 
 

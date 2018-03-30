@@ -1,1 +1,1 @@
-COLLECTIONS = "sim"
+COLLECTION = "sims"

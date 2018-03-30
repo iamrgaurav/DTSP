@@ -1,1 +1,1 @@
-COLLECTIONS = "users"
+COLLECTION = "users"
