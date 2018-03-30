@@ -22,8 +22,9 @@ def user_verify():
             return redirect(url_for('.user_details', user_id=user._id))
         else:
             flash("User NOT Found")
+            return redirect(request.path)
     else:
-        return "Unsuccesful"
+        return render_template('user-verify.html')
 
 
 @retailers_blueprint.route('/user_details/<user_id>', methods=['GET', 'POST'])
