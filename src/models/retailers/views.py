@@ -19,7 +19,7 @@ def user_verify():
         aadhaar = request.form['aadhaar']
         if Retailer.is_authenticated(aadhaar):
             user = Retailer.get_user_by_adhaar(aadhaar)
-            return redirect(url_for('.user_details', user_id=user._id))
+            return "User authenticated"
         else:
             return "User is not authenticated"
     else:
