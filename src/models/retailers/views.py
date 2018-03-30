@@ -52,11 +52,12 @@ def sim_register(user_id):
     tsp = request.form['tsp']
     issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
     lsa = request.form['lsa']
+    return "user registerd"
 
-    sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
-    if sim.save_to_db():
-        if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
-            flash("Successfuly Registered")
-            return redirect(url_for('.dashboard',user_id =session['uid']))
-
-    flash("Registration failed")
+    # sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
+    # if sim.save_to_db():
+    #     if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
+    #         flash("Successfuly Registered")
+    #         return redirect(url_for('.dashboard',user_id =session['uid']))
+    #
+    # flash("Registration failed")
