@@ -1,4 +1,5 @@
 import requests
+import datetime
 from flask import render_template, request, redirect, url_for, session, flash
 from flask.blueprints import Blueprint
 from src.models.retailers.retailer import Retailer
@@ -49,7 +50,7 @@ def sim_register(user_id):
     aadhaar_no = request.form['aadhaar_no']
     mobile_no = request.form['mobile_no']
     tsp = request.form['tsp']
-    issue_date = request.form['issue_date']
+    issue_date = datetime.datetime.now()
     lsa = request.form['lsa']
 
     sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
