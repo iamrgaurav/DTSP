@@ -10,7 +10,7 @@ class Database:
     @staticmethod
     def initialize():
         client = pymongo.MongoClient(Database._URI)
-        Database._DATABASE = client["tsp"]
+        Database._DATABASE = client.get_default_database()
 
     @staticmethod
     def insert(collection, data):
@@ -35,4 +35,5 @@ class Database:
     @staticmethod
     def update(collection, query, data):
         Database._DATABASE[collection].update(query, data, upsert=True)
+
 
