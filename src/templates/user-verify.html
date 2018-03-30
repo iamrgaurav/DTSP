@@ -5,7 +5,7 @@
 {% endblock %}
 {% block header %}
   <div class="navbar-text w-100 text-center">
-    <h2 class="d-inline-block">Telecom Service Provider</marquee></h2>
+    <h2 class="d-inline-block">Telecom Service Provider</h2>
   </div>
     <ul class="nav navbar-nav ml-auto">
         {% if session['uid']==None %}
@@ -14,6 +14,35 @@
     </ul>
 {% endblock %}
 {% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="w-100 h-100 success">
+                <div class="warning-box-wrapper"></div>
+                <div class="warning-box bg-cherry-red-fade rounded alert p-0" role="alert">
+                    <div class="warning-box-header bg-cherry-red text-white text-center pt-2 pb-2 rounded-top">
+                        <h2><span class="fas fa-exclamation-circle"></span> Congratulations
+                            <button type="button" class="close p-2 pr-3 text-white" data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                        </h2>
+                    </div>
+                    <div class="container warning-box-body">
+                        {% for message in messages %}
+                            {{ message }}
+                            <div class="warning-box-footer">
+                                <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                                        data-target="#myModal" id="success">
+                                    Okay!
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    {% endwith %}
+
   <div class="col-lg-3"></div>
    <div class="col-lg-6">
        <div class="well well-lg jumb">
