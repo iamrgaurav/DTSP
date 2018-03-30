@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label for="aadhaar">Aadhaar_No:</label>
                             <input id="aadhaar" name="aadhaar" type="text" class="form-control" value="{{ user.aadhaar_no }}"
-                                   disabled="disabled" required="required">
+                                   readonly="readonly" required="required">
                         </div>
 
                         <div class="form-group">
@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label for="lsa">Local_Service_Area:</label>
-                            <input id="lsa" type="text" name="lsa" class="form-control" required>
+                            <input id="lsa" type="text" name="lsa" value="Punjab" readonly="readonly" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <input type="hidden" name="tsp" value="Idea" class="form-control" required>
