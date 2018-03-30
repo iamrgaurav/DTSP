@@ -40,20 +40,21 @@ def user_details(user_id):
 
 @retailers_blueprint.route('/register/<user_id>', methods=['GET', 'POST'])
 def register(user_id):
+    return render_template('Register.html',user_id=user_id)
+
+@retailers_blueprint.route('/register/<user_id>', methods=[ 'POST'])
+def sim_register(user_id):
     user = User.get_by_id(user_id)
-    if request.method=="POST":
+    aadhaar_no = request.form['aadhaar_no']
+    mobile_no = request.form['mobile_no']
+    tsp = request.form['tsp']
+    issue_date = request.form['issue_date']
+    lsa = request.form['lsa']
 
-        aadhaar_no = request.form['aadhaar_no']
-        mobile_no = request.form['mobile_no']
-        tsp = request.form['tsp']
-        issue_date = request.form['issue_date']
-        lsa = request.form['lsa']
+    sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
+    if sim.save_to_db():
+        if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
+            flash("Successfuly Registered")
+            return redirect(url_for('.dashboard',user_id =session['uid']))
 
-        sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
-        if sim.save_to_db():
-            if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
-                flash("Successfuly Registered")
-                return redirect(url_for('.dashboard',user_id =session['uid']))
-
-    return render_template('Register.html', user = user)
-
+    flash("Registration failed")
