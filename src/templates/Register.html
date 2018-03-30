@@ -49,7 +49,7 @@
            <h1><b>Registration</b></h1>8
            <div class="jumbotron">
                <div class="well">
-           	      <form method="post" action = "{{ url_for('retailer.sim_register',user_id = user_id) }}">
+           	      <form method="post" action = "{{ url_for('retailer.sim_register',user_id = user._id) }}">
            	  	      <div class="form-group">
            	  		      <label for="aadhaar">Aadhaar_No:</label>
            	  		      <input id = "aadhaar" type="text" class="form-control" value = "{{ user.aadhaar_no }}" disabled="disabled" required="required">

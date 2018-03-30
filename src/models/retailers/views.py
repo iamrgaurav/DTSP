@@ -40,7 +40,8 @@ def user_details(user_id):
 
 @retailers_blueprint.route('/register/<user_id>', methods=['GET', 'POST'])
 def register(user_id):
-    return render_template('Register.html',user_id=user_id)
+    user =User.get_by_id(user_id)
+    return render_template('Register.html',user=user)
 
 @retailers_blueprint.route('/register/<user_id>', methods=[ 'POST'])
 def sim_register(user_id):
