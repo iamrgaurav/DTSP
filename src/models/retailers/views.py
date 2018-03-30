@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import render_template, request, redirect, url_for, session
 from flask.blueprints import Blueprint
 from src.models.retailers.retailer import Retailer
 from src.models.users.user import User
@@ -21,8 +21,7 @@ def user_verify():
             user = Retailer.get_user_by_adhaar(aadhaar)
             return redirect(url_for('.user_details', user_id=user._id))
         else:
-            flash("User NOT Found")
-            return redirect(url_for('request.path'))
+            return "User is not authenticated"
     else:
         return render_template('user-verify.html')
 
