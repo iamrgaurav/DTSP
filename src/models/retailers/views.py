@@ -47,14 +47,13 @@ def register(user_id):
         tsp = request.form['tsp']
         issue_date = request.form['issue_date']
         lsa = request.form['lsa']
-        user = User.get_by_id(user_id)
-        if user is not None:
-            sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
-            if sim.save_to_db():
-                if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.lsa}):
-                  flash("Successfuly Registered")
-                  return redirect(url_for('.dashboard',user_id))
-        return render_template('Register.html', user=user)
+
+        sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
+        if sim.save_to_db():
+            if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":sim.aadhaar_no, "mobile_no":sim.mobile_no, "tsp":"Airtel", "issue_date":sim.issue_date,"lsa":sim.local_service_area}):
+                flash("Successfuly Registered")
+                return redirect(url_for('.dashboard',user_id =user_id))
+
     return render_template('Register.html')
 
 
