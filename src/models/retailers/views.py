@@ -2,6 +2,7 @@ import requests
 from flask import render_template, request, redirect, url_for, session, flash
 from flask.blueprints import Blueprint
 from src.models.retailers.retailer import Retailer
+from src.models.sim.sim import Sim
 from src.models.users.user import User
 
 retailers_blueprint = Blueprint('retailer', __name__)
@@ -39,7 +40,20 @@ def user_details(user_id):
 
 @retailers_blueprint.route('/register/<user_id>', methods=['GET', 'POST'])
 def register(user_id):
-    user = User.get_by_id(user_id)
+    if request.method=="POST":
+        user = User.get_by_id(user_id)
+        sim =request.form['aadhaar_no']
+        if user is not None:
+            aadhaar_no = request.form['aadhaar_no']
+            mobile_no = request.form['mobile_no']
+            tsp = request.form['tsp']
+            issue_date = request.form['issue_date']
+            lsa = request.form['lsa']
+            sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
+            if sim.save_to_db():
+                if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":"sim.aadhaar_no", "mobile_no":"sim.mobile_no", "tsp":"Airtel","issue_date":"sim.issue_date","lsa":"sim.lsa"}):
+                  flash("Successfuly Registered")
+                  redirect(url_for('home_method'))
     return render_template('Register.html', user=user)
 
 
