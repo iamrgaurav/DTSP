@@ -50,7 +50,7 @@ def sim_register(user_id):
     aadhaar_no = request.form['aadhaar_no']
     mobile_no = request.form['mobile_no']
     tsp = request.form['tsp']
-    issue_date = datetime.datetime.now()
+    issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
     lsa = request.form['lsa']
 
     sim = Sim(aadhaar_no, mobile_no, tsp, issue_date, lsa)
