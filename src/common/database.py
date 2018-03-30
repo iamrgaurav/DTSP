@@ -2,7 +2,6 @@ import pymongo
 import os
 
 
-
 class Database:
     _URI = os.environ.get('DB_URI')
     _DATABASE = None
@@ -14,11 +13,11 @@ class Database:
 
     @staticmethod
     def insert(collection, data):
-        Database._DATABASE[collection].insert(data)
+        return True if Database._DATABASE[collection].insert(data) else False
 
     @staticmethod
     def delete(collection, query):
-        Database._DATABASE[collection].remove(query)
+        return True if Database._DATABASE[collection].remove(query) else False
 
     @staticmethod
     def find(collection, query):
@@ -29,10 +28,9 @@ class Database:
         return Database._DATABASE[collection].find_one(query)
 
     @staticmethod
-    def count(collection, query):
+    def count(collection,query):
         return Database._DATABASE[collection].count(query)
 
     @staticmethod
-    def update(collection, query, data):
-        Database._DATABASE[collection].update(query, data, upsert=True)
-
+    def update(collection,query, data):
+        return True if Database._DATABASE[collection].update(query,data,upsert=True) else False
