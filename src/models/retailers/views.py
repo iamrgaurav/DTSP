@@ -31,7 +31,7 @@ def user_verify():
 @retailers_blueprint.route('/user_details/<user_id>', methods=['GET', 'POST'])
 def user_details(user_id):
     user = User.get_by_id(user_id)
-    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim",data={'aadhaar_no':user.aadhaar_no, 'tsp':'Airtel'}).json()
+    data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim", data={'aadhaar_no':'user.aadhaar_no', 'tsp':'Airtel'}).json()
     sims = data['data']['sim']
     sim_count = data['data']['sims_by_other_tsp']
     keys = sim_count.keys()
@@ -53,7 +53,7 @@ def register(user_id):
             if sim.save_to_db():
                 if requests.post("https://beast-cdb.herokuapp.com/api/tsp/",{"aadhaar_no":"sim.aadhaar_no", "mobile_no":"sim.mobile_no", "tsp":"Airtel","issue_date":"sim.issue_date","lsa":"sim.lsa"}):
                   flash("Successfuly Registered")
-                  redirect(url_for('home_method'))
+                  return redirect(url_for('home_method'))
         return render_template('Register.html', user=user)
     return render_template('Register.html')
 
