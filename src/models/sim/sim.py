@@ -21,7 +21,7 @@ class Sim:
         }
 
     def save_to_db(self):
-        Database.update(SimConstants.COLLECTION, {'_id': self._id}, self.json())
+        return Database.update(SimConstants.COLLECTION, {'_id': self._id}, self.json())
 
     @classmethod
     def get_by_id(cls, sim_id):

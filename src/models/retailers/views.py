@@ -49,7 +49,6 @@ def sim_register(user_id):
     if request.method =='post':
         aadhaar_no = request.form['aadhaar']
         mobile_no = request.form['mobile_no']
-        user = User.get_by_id(user_id)
         tsp = request.form['tsp']
         issue_date = datetime.datetime.now().strftime("%Y-%m-%d")
         lsa = request.form['lsa']

@@ -34,5 +34,5 @@ class Database:
 
     @staticmethod
     def update(collection, query, data):
-        Database._DATABASE[collection].update(query, data, upsert=True)
+        return True if Database._DATABASE[collection].update(query, data, upsert=True) else False
 
