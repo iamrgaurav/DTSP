@@ -32,7 +32,7 @@ def user_details(user_id):
     user = User.get_by_id(user_id)
     data = requests.post("https://beast-cdb.herokuapp.com/api/tsp/sim",data={'aadhaar_no':user.aadhaar_no, 'tsp':'Airtel'}).json()
     sims = data['data']['sim']
-    sim_count = data['data']['sim_by_other_tsp']
+    sim_count = data['data']['sims_by_other_tsp']
     keys = sim_count.keys()
     return render_template('user_details.html', user=user, sims=sims, sim_count =sim_count, keys = keys)
 
