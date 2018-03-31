@@ -31,5 +31,5 @@ class Sim:
     @classmethod
     def get_by_aadhaar(cls, aadhaar_id):
         cluster_data = Database.find(SimConstants.COLLECTION, {"aadhaar_no": aadhaar_id})
-        return [cls(**data) for data in cluster_data if cluster_data is not None] if cluster_data is not None else False
+        return [cls(**data) for data in cluster_data if data is not None] if cluster_data is not None else False
 
