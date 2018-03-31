@@ -9,7 +9,7 @@
   </div>
     <ul class="nav navbar-nav ml-auto">
         {% if session['uid']==None %}
-            <li><a href="{{ url_for('logout') }}"><h1>Logout</h1></a></li>
+            <li><a href="{{ url_for('logout') }}"><h2>Logout</h2></a></li>
         {% endif %}
     </ul>
 {% endblock %}
